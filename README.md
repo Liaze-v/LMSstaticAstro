@@ -60,3 +60,14 @@ If not, we'll return him to the free root
 
 Astro v2.9 Neltify FaunaDB Stripe
 
+## Important NOTE
+
+This project uses the role system of the netlify system to protect the paying root.
+
+It was planned to change to faunaDB verification.
+
+Unfortunately, FaunaDB wanted to change the GraphQL API to its own system.
+
+So I didn't continue. 
+
+Hoping this project will give you some ideas or help you.
