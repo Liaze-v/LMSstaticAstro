@@ -1,0 +1,22 @@
+type User {
+  netlifyID: ID!
+  stripeID: ID!
+  name: String!
+  email:String!
+  productName: String!
+}
+
+type Query {
+  allUser: [User!]
+  getUserByNetlifyID(netlifyID: ID!): User!
+  getUserByStripeID(stripeID: ID!): User!
+  getUserByStripeIDAndNetlifyID(stripeID: ID!,netlifyID: ID!): User!
+  getUserByNetlifyIDAndEmail(netlifyID: ID!,email: String!): User!
+  getUserByNetlifyIDAndProductName(netlifyID: ID!,productName: String!): User!
+  getUserByNetlifyIDAndName(netlifyID: ID!,name: String!): User!
+  getUserByStripeIDAndEmail(stripeID: ID!,email: String!): User!
+  getUserByStripeIDAndProductName(stripeID: ID!,productName: String!): User!
+  getUserByStripeIDAndName(stripeID: ID!,name: String!): User!
+  getUserByEmailAndName(email: String!,name: String!): User!
+  getUserByEmailAndProductName(email: String!,productName: String!): User!
+}

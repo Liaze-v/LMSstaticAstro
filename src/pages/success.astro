@@ -1,0 +1,30 @@
+---
+import SiteLayouts from "../layouts/SiteLayouts.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<SiteLayouts title={SITE_TITLE} description={SITE_DESCRIPTION} fullpage={true}>
+	<section class="text-black bg-neutral2 body-font">
+		<div class="flex items-center justify-center h-screen">
+			<div class="p-4 rounded shadow-lg">
+			  <div class="flex flex-col items-center space-y-2 h-[50vh] justify-around">
+				<svg xmlns="http://www.w3.org/2000/svg" class="text-green w-64 h-64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+				  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+				</svg>
+				<h1 class="text-6xl font-bold">Merci !</h1> 
+				<p class="text-2xl">Merci de votre achat ! Votre adhésion à la formation est en cours.</p>
+				<p class="text-2xl">Rendez-vous dans votre espace de formation.</p>
+				<a href="/"
+				  class="inline-flex items-center px-4 py-2 text-white bg-primary hover:bg-black focus:outline-none focus:ring">
+				  <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 mr-2" fill="none" viewBox="0 0 24 24"
+				  stroke="currentColor" stroke-width="2">
+				  <path stroke-linecap="round" stroke-linejoin="round" d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+					</svg> 
+				  <span class="text-2xl font-medium cursor-pointer">
+					Retourner sur le Site
+				  </span>
+				</a>
+			  </div>
+			</div>
+		  </div>
+	</section>
+</SiteLayouts>

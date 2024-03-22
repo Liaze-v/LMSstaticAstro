@@ -1,0 +1,16 @@
+[build]
+  functions = "functions"
+  edge_functions  = "edge-functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+
+[[edge_functions]]
+  path = "/formation-pro"
+  function = "protected"
+
+[[edge_functions]]
+  path = "/formation-pro/*"
+  function = "protected"
+

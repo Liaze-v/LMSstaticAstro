@@ -1,0 +1,182 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import FormationPROPaginate from "../components/FormationPROPaginate.astro";
+import ButtonDownload from "../components/ButtonDownload.astro";
+import YoutubeVideoID from "../utils/YoutubeVideoID.astro";
+import SiteLayouts from "./SiteLayouts.astro";
+import FormationPROLayouts from "./FormationPROLayouts.astro";
+type Props = CollectionEntry<"formation">["data"];
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  videolink,
+  posttitle,
+  section,
+  privatecontend,
+  filedownload,
+} = Astro.props;
+const { slug } = Astro.params;
+import { fade } from 'astro:transitions';
+import { slide } from 'astro:transitions';
+import { FORMATION_SECTION_MASTER } from '../consts';
+---
+<SiteLayouts title={title} description={description} formation={true}>
+  <FormationPROLayouts>
+
+    <!-- <article class="pt-1 mx-auto px-3 md:px-8 min-w-0 max-w-none w-full" > -->
+    <!-- <article class="pt-1 mx-auto px-3 md:px-8 min-w-0 max-w-none w-full" transition:animate={slide({ duration: '0.3s' })}> -->
+    <article class="pt-1 mx-auto px-3 xl:px-8 min-w-0 max-w-none w-full" transition:animate="slide">
+      {
+        privatecontend && FORMATION_SECTION_MASTER.includes(section) ? (
+          <div class="xl:w-full min-h-[250px] md:min-h-[400px] lg:min-h-[550px] xl:min-h-[500px] xl:h-[500px] 2xl:h-[630px] bg-black flex flex-col flex-nowrap justify-center items-center gap-20">
+            <svg
+              fill="#ffffff"
+              height="64px"
+              width="64px"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 60 60"
+              xml:space="preserve"
+              stroke="#ffffff"
+            >
+              <g
+                id="SVGRepo_tracerCarrier"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <>
+                <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                <g id="SVGRepo_iconCarrier">
+                  {" "}
+                  <g>
+                    {" "}
+                    <path d="M45.563,29.174l-22-15c-0.307-0.208-0.703-0.231-1.031-0.058C22.205,14.289,22,14.629,22,15v30 c0,0.371,0.205,0.711,0.533,0.884C22.679,45.962,22.84,46,23,46c0.197,0,0.394-0.059,0.563-0.174l22-15 C45.836,30.64,46,30.331,46,30S45.836,29.36,45.563,29.174z M24,43.107V16.893L43.225,30L24,43.107z" />{" "}
+                    <path d="M30,0C13.458,0,0,13.458,0,30s13.458,30,30,30s30-13.458,30-30S46.542,0,30,0z M30,58C14.561,58,2,45.439,2,30 S14.561,2,30,2s28,12.561,28,28S45.439,58,30,58z" />{" "}
+                  </g>{" "}
+                </g>
+              </>
+            </svg>
+            <button onclick="login();" class="bg-primary text-white font-bold py-2 px-4 rounded">
+              Connexion
+            </button>
+          </div>
+        ) : (
+          <div class="relative w-full">
+            <YoutubeVideoID url={videolink || "https://www.youtube.com/watch?v=yqWX86uT5jM"}/>
+          </div>
+        )
+      }
+      <FormationPROPaginate slug={slug} section={section}>
+        <div
+          class="border-b-2 border-solid border-black mb-10 mx-auto xl:w-[720px] p-10"
+        >
+          <div class="text-center py-4">
+            <div class="mb-2">
+              <FormattedDate date={pubDate} />
+              {
+                updatedDate && (
+                  <div class="italic">
+                    Mise à jour le <FormattedDate date={updatedDate} />
+                  </div>
+                )
+              }
+            </div>
+            <h1 class="text-4xl mt-10">
+              {title || posttitle}
+            </h1>
+          </div>
+          <div class="" id="accordion-collapse">
+            <h2 id="accordion-collapse-heading-2">
+              <button
+                type="button"
+                class="flex items-center justify-between w-full p-5 font-medium text-left text-black border border-black"
+              >
+                <span>Resource</span>
+                <svg
+                  class="w-3 h-3 rotate-180 shrink-0"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 10 6"
+                >
+                  <path
+                    stroke="black"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5 5 1 1 5"></path>
+                </svg>
+              </button>
+            </h2>
+            <section id="accordion-collapse-body-2" class="hidden transition">
+              <div
+                class="flex flex-wrap justify-center bg-white flex-col items-end content-around"
+                aria-labelledby="accordion-collapse-heading-2"
+              >
+              {
+                privatecontend && FORMATION_SECTION_MASTER.includes(section) ? (
+                  ""
+                ) : (
+                  filedownload?.map((data) => (
+                    <ButtonDownload fileName={data} fileNameDownload={data} />
+                  ))
+                )
+              }
+              </div>
+            </section>
+          </div>
+        </div>
+        {
+          privatecontend && FORMATION_SECTION_MASTER.includes(section) ?(
+            ""
+          ) : (
+            <slot />
+          )
+        }
+      </FormationPROPaginate>
+    </article>
+  </FormationPROLayouts>
+  <script type="text/partytown">
+
+    document
+      .querySelector("#accordion-collapse-heading-2")
+      .addEventListener("click", () => {
+        document
+          .querySelector("#accordion-collapse-body-2")
+          .classList.toggle("hidden");
+      });
+
+    function downloadFile(url, fileName) {
+      fetch(url, {
+        method: "get",
+        mode: "no-cors",
+        referrerPolicy: "no-referrer",
+      })
+        .then((res) => res.blob())
+        .then((res) => {
+          const aElement = document.createElement("a");
+          aElement.setAttribute("download", fileName);
+          const href = URL.createObjectURL(res);
+          aElement.href = href;
+          // aElement.setAttribute('href', href);
+          aElement.setAttribute("target", "_blank");
+          aElement.click();
+          URL.revokeObjectURL(href);
+        });
+    }
+    let buttondownload = document.querySelectorAll(".download");
+    buttondownload.forEach((button) => {
+      button.onclick = function () {
+        downloadFile(
+          "/"+button.getAttribute("data-download"),
+          button.getAttribute("data-download")
+        );
+      };
+    });
+  </script>
+</SiteLayouts>

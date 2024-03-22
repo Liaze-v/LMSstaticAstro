@@ -1,0 +1,22 @@
+---
+const { position, left, right } = Astro.props;
+
+
+
+---
+
+{
+	(	
+		position === "left" ? 
+			<a href="/formation" class="w-max font-bold inline-flex text-white bg-primary border-0 py-2 px-6 focus:outline-none rounded text-3xl">
+				Rejoins la formation
+			</a> 
+		:position === "center" ?
+			<a href="/formation" class=" w-max font-bold flex mx-auto mt-16 text-white bg-primary border-0 py-2 px-8 focus:outline-none rounded text-3xl">
+				Rejoins la formation
+			</a>
+		:position === "right" 
+	)
+}
+
+

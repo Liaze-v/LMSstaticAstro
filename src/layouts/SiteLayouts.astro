@@ -1,0 +1,77 @@
+---
+import { ViewTransitions } from 'astro:transitions';
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import ConnectionLayouts from "./ConnectionLayouts.astro";
+const { title, description,formation=false,indexformation=false,blog=false,fullpage=false,noindexplz=false } = Astro.props;
+import { GoogleFontsOptimizer } from "astro-google-fonts-optimizer";
+import "../styles/global.css";
+---
+
+<html lang="fr" class="h-full box-border">
+    <BaseHead title={title} description={description} />
+      <script type="module" defer  src="/src/utils/gotr.js"></script>
+      <script type="module" defer src="/src/utils/script.js"></script>
+    <GoogleFontsOptimizer url="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+    </GoogleFontsOptimizer>
+    <ViewTransitions fallback="swap"></ViewTransitions>
+      { noindexplz ? (
+        <meta name="robots" content="noindex">
+        <meta name="googlebot" content="noindex">
+      ):(
+      ""  
+        )
+      }
+  </head>
+  <body class=" grid grid-rows-[auto_1fr_auto] bg-neutral2 bg-gray-800 m-0 p-0 text-left break-words text-gray-900 text-xl ">
+    {
+      fullpage ? (
+      <Header forcehidden="hidden" />
+      <slot />
+      <ConnectionLayouts />
+     ):(
+      <Header />
+      <slot />
+      <ConnectionLayouts />
+      <Footer />
+      <script type="text/partytown">
+        document.getElementById("navbar-toggler").addEventListener('click',()=>{
+          console.log("toggle")
+          document.getElementById("navbar-default").classList.toggle("hidden")
+        })
+      </script>
+    )}
+    {
+      formation ? (
+        <script is:inline defer src="/src/utils/vlitejs@5.js"></script>
+        <script is:inline defer src="/src/utils/vyoutube.js"></script>
+        <script is:inline defer src="/src/utils/volume-bar.js"></script>
+        <script is:inline defer src="/src/utils/vlitecustom.js"></script>
+        <link rel="stylesheet" href="/src/utils/volume-bar.css"></link>
+        <link rel="stylesheet" href="/src/utils/vlite.css"></link>          
+      ):(
+        ""
+      )
+    }
+    {
+      formation ||  indexformation ? (
+        <script type="text/partytown">
+          document.getElementById("buttonsidebarForma").addEventListener('click',()=>{
+            console.log("toggle")
+            document.getElementById("sidebarForma").classList.toggle("hidden")
+          })
+        </script>
+      ) :(
+          ""
+      )
+    }
+    {
+      blog ? (
+        <link rel="stylesheet" href="/src/styles/blog.css"></link>   
+      ) :(
+          ""
+      )
+    }
+  </body>
+</html>

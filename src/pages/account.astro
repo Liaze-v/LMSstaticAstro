@@ -1,0 +1,55 @@
+---
+import SiteLayouts from "../layouts/SiteLayouts.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+---
+<SiteLayouts title={SITE_TITLE} description={SITE_DESCRIPTION}>
+	<section class="text-gray-400 bg-gray-900 body-font">
+        <div class="container mx-auto my-16 min-h-screen">
+            <div class="inputs w-full max-w-2xl p-6 mx-auto">
+                <h2 class="text-2xl text-black">Account</h2>
+                <div class="mt-6 border-t border-gray-400 pt-4">
+                    <div class='flex flex-wrap -mx-3 mb-6'>
+                        <div class='w-full md:w-full px-3 mb-6'>
+                            <span class="block uppercase tracking-wide text-black text-xl font-bold mb-2">Votre Nom :</span>
+                            <span id="accountName" class="block  tracking-wide text-black text-xl mb-2">email address</span>
+                        </div>
+                        <div class='w-full md:w-full px-3 mb-6'>
+                            <span class="block uppercase tracking-wide text-black text-xl font-bold mb-2">Votre email address :</span>
+                            <span id="accountEmail" class="block  tracking-wide text-black text-xl mb-2">email address</span>
+                        </div>
+                        <div class='w-full md:w-full px-3 mb-6'>
+                            <span class="block uppercase tracking-wide text-black text-xl font-bold mb-2">Votre Plan Formation :</span>
+                            <span id="accountPlan" class="block uppercase tracking-wide text-black text-xl mb-2">email address</span>
+                        </div>
+                        <div class='w-full md:w-full px-3 mb-6 '>
+                            <label class='block uppercase tracking-wide text-black text-xl font-bold mb-2'>password</label>
+                            <button class="appearance-none bg-gray-200 text-black px-2 py-1 shadow-sm border border-gray-400 rounded-md ">change your password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<script type="text/partytown">
+            function getCookie(cname) {
+            let name = cname + "=";
+            let ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+            }
+            console.log(getCookie("user_data"))
+            const usera = JSON.parse(getCookie("user_data"))
+            document.getElementById("accountName").innerHTML = usera.userMetadata.full_name
+            document.getElementById("accountEmail").innerHTML = usera.userEmail
+            document.getElementById("accountPlan").innerHTML = usera.userRoles
+        </script>
+
+	</section>
+</SiteLayouts>

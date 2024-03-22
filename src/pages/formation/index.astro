@@ -1,0 +1,30 @@
+---
+import { SITE_TITLE_FORMATION, SITE_DESCRIPTION_FORMATION } from "../../consts";
+import FormationLayouts from "../../layouts/FormationLayouts.astro";
+import SiteLayouts from "../../layouts/SiteLayouts.astro";
+import CountdownCustom from "../../components/CountdownCustom.astro";
+import PlanPrcing from "../../components/PlanPrcing.astro";
+---
+
+<SiteLayouts title={SITE_TITLE_FORMATION} description={SITE_DESCRIPTION_FORMATION} indexformation={true}>
+    <FormationLayouts>
+      <section class="pt-1 mx-auto px-3 md:px-8 min-w-0 max-w-none w-full">
+          <div class="relative w-full h-full">
+            <div class="relative px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-0 lg:px-8 lg:py-20">
+              <div class="max-w-xl mb-10 md:mx-auto text-center lg:max-w-2xl md:mb-12">
+                <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-black sm:text-4xl md:mx-auto">
+                  <span class="relative inline-block">
+                    <span class="relative">Offre de lancement</span>
+                  </span>
+                </h2>
+                <CountdownCustom />
+              </div>
+              <div class="grid max-w-screen-md gap-10 md:grid-cols-2 sm:mx-auto">
+                <PlanPrcing plantype="pro" />
+                <PlanPrcing plantype="master" />
+              </div>
+            </div>
+          </div>
+      </section>
+    </FormationLayouts>
+</SiteLayouts>

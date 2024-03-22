@@ -1,0 +1,23 @@
+---
+import { getCollection } from 'astro:content';
+import FormationPROSideBar from "../components/FormationPROSideBar.astro";
+const posts = (await getCollection('formation'))
+import { FORMATION_SECTION_ORDER } from '../consts';
+
+// const unique = [...new Set(posts.map((item) => item.data.section))];
+
+let formationFilterArray:any[] = [];
+
+FORMATION_SECTION_ORDER.forEach(element => {
+    let section = posts.filter(e => e.data.section == element
+    ) 
+    .sort(
+        (a, b) => a.data.position - b.data.position
+        );
+    formationFilterArray.push([element,section]);
+});
+---
+<main class="container px-4 py-12 m-auto flex flex-col xl:flex-row">
+    <FormationPROSideBar formationFilterArray={formationFilterArray}/>
+    <slot/>
+</main>

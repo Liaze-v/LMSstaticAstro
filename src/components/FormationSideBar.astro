@@ -1,0 +1,54 @@
+---
+const {formationFilterArray} = Astro.props;
+import { FORMATION_SECTION_MASTER } from '../consts';
+---
+
+
+<button id="buttonsidebarForma"
+ class="xl:hidden inline-flex items-center mt-2 mb-8 self-center">
+  <span class="sr-only">Open sidebar</span>
+  <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
+  </svg>
+  <span class="ml-2 text-3xl font-bold text-primary">Menu Formation</span>
+</button>
+<aside id="sidebarForma" class="w-full hidden xl:block xl:sticky xl:w-[45%] 2xl:w-1/3 xl:max-w-[500px]" aria-label="Sidebar">
+      <ul class="overflow-auto mr-4 pb-10 pr-4" id="sidebar">
+        {
+            formationFilterArray.map((sec) => (
+              <>
+                <li class="flex py-2 mt-4 px-1 border-b-2 border-black">
+                  <h2 class="text-black text-2xl font-bold relative">{sec[0]}
+                    {
+                      FORMATION_SECTION_MASTER.includes(sec[0]) == true && sec[0].length < 25 ? (
+                        <span class={`absolute -right-12 -top-3 -translate-y-px translate-x-px rotate-12 px-3 text-base font-extrabold uppercase tracking-widest text-primary`}>MASTER</span>
+                      )
+                      :FORMATION_SECTION_MASTER.includes(sec[0]) == true ?(
+                        <span class={`absolute right-40 -top-3 -translate-y-px translate-x-px rotate-12 px-3 text-base font-extrabold uppercase tracking-widest text-primary`}>MASTER</span>
+                      ):sec[0].length < 25 ?(
+                        <span class={`absolute -right-12 -top-3 -translate-y-px translate-x-px rotate-12 px-3 text-base font-extrabold uppercase tracking-widest text-primary`}>PRO</span>
+                      ):(
+                        <span class={`absolute right-40 -top-3 -translate-y-px translate-x-px rotate-12 px-3 text-base font-extrabold uppercase tracking-widest text-primary`}>PRO</span>
+                      )
+                    }
+                  </h2>
+                </li>
+                { sec[1].map((list)=>(
+                  <> 
+                  <li>
+                      <a class="text-black hover:text-primary font-bold" href={`/formation/${list.slug}`}>
+                        <div class="p-1 my-1 flex items-center">
+                          {list.data.privatecontend == false ? <span class=""><svg viewBox="0 0 512 512" width="18" height="18" class="fill-secondary mr-2"><path d="M512 256C512 397.4 397.4 512 256 512C114.6 512 0 397.4 0 256C0 114.6 114.6 0 256 0C397.4 0 512 114.6 512 256zM256 48C141.1 48 48 141.1 48 256C48 370.9 141.1 464 256 464C370.9 464 464 370.9 464 256C464 141.1 370.9 48 256 48z"></path></svg></span> : <span class="chapter"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="16" height="16" class="fill-primary mr-2"><path d="M144 144v48H304V144c0-44.2-35.8-80-80-80s-80 35.8-80 80zM80 192V144C80 64.5 144.5 0 224 0s144 64.5 144 144v48h16c35.3 0 64 28.7 64 64V448c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V256c0-35.3 28.7-64 64-64H80z"></path></svg></span>}
+                          <h3 class="mr-auto text-lg pr-2"> {list.data.posttitle || list.data.title}</h3>
+                          {list.data.duration && <span class="text-xs text-white bg-black bg-opacity-50 py-1 px-2 font-bold ">{list.data.duration}</span>}
+                        </div>
+                      </a>
+                    </li>
+                  </>
+                  ))  
+                }
+              </>
+            ))
+        }
+    </ul>
+</aside>

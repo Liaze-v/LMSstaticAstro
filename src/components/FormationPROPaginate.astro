@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+const posts = (await getCollection('formation'))
+import { FORMATION_SECTION_ORDER } from '../consts';
+
+// On trie les sections et articles
+let formationFilterArray:any[] = [];
+FORMATION_SECTION_ORDER.forEach(element => {
+    let section = posts.filter(e => e.data.section == element
+    ) 
+    .sort(
+        (a, b) => a.data.position - b.data.position
+        );
+    formationFilterArray.push([element,section]);
+});
+
+// on recupère les données de l'article actuel
+const { slug,section } = Astro.props;
+
+let articlePrecedent = ""
+let articleActuel = ""
+let articleSuivant = ""
+// On cherche l'article actuel avec la section et le slug
+// elementIndex vas nous permetre de naviger dans un autre element
+let elementIndex = 0;
+formationFilterArray.forEach(element => {
+    elementIndex = elementIndex + 1;
+    // Si l'element actuel correspond à la section
+    if (element[0] == section) {
+        // On cherche l'article actuel dans l'element
+        for (let i = 0; i < element[1].length; i++) {
+            // Si le slug correspond à l'article de l'element
+            if (element[1][i].slug == slug) {
+                // Si i est 0 donc le premier article de l'element on vas chercher le dernier de l'element precedant
+                if (i == 0) {
+                    // si c'est le premier elementIndex alors il n'existe pas d'article
+                    if (elementIndex == 1) {
+                        // console.log("Premier article");
+                    }
+                    else{
+                        // - 2 car le premier element à l'index 0 mais elementIndex = 1, donc -1 pour l'element precedant et -1 trouver son veritable index
+                        // console.log(formationFilterArray[elementIndex-2][1][formationFilterArray[elementIndex-2][1].length - 1].slug,"article precedent");
+                        articlePrecedent = formationFilterArray[elementIndex-2][1][formationFilterArray[elementIndex-2][1].length - 1].slug
+                    }
+                }
+                else{
+                    // Si i n'est pas 0 donc il existe un article avant
+                    // console.log(element[1][i-1].slug,"article precedant");
+                    articlePrecedent = element[1][i-1].slug
+                }
+                // i est article actuel
+                // console.log(element[1][i].slug,"article actuel");
+                articleActuel = element[1][i].slug
+                // Est ce que l'article suivant existe
+                if (!element[1][i+1] == true) {
+                    // Est ce que l'elément suivant existe, elementIndex est égale à +1
+                    if (!formationFilterArray[elementIndex] == true) {
+                        // console.log("Dernier article");
+                    }else{
+                        // console.log(formationFilterArray[elementIndex][1][0].slug,"article suivant dans  section");
+                        articleSuivant = formationFilterArray[elementIndex][1][0].slug
+                    }
+                }else{
+                    // console.log(element[1][i+1].slug,"article suivant");
+                    articleSuivant = element[1][i+1].slug
+                }
+            }
+        }
+    }
+})
+---
+
+<section class="flex justify-center py-6 bg-primary text-white font-bold shadow-lg mb-6 gap-40">
+    {articlePrecedent ? <a class="" href={"/formation-pro/"+articlePrecedent}>Précédent</a> : "" }
+    {articleSuivant ? <a class="" href={"/formation-pro/"+articleSuivant}>Suivant</a> : "" }
+</section>
+<slot />
+<section class="flex justify-around my-10 mb-6 gap-2 text-black font-medium">
+    {articlePrecedent ? <a class="" href={"/formation-pro/"+articlePrecedent}>Précédent</a> : "" }
+    <div id="up" class="bg-black rounded-full"><img src="../src/svg/up-arrow-svgrepo-com.svg" alt="UP" class="h-12 w-12 p-1 m-1"></div>
+    {articleSuivant ? <a class="" href={"/formation-pro/"+articleSuivant}>Suivant</a> : "" }
+</section>
+<script type="text/partytown">
+    document.getElementById("up").addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+        })
+    })
+</script>

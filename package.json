@@ -1,0 +1,27 @@
+{
+  "name": "astro-automa",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^0.19.7",
+    "@astrojs/partytown": "^1.2.3",
+    "@astrojs/rss": "^2.4.4",
+    "@astrojs/sitemap": "^2.0.1",
+    "@astrojs/starlight": "^0.7.2",
+    "@astrojs/tailwind": "^4.0.0",
+    "astro": "^2.10.3",
+    "astro-google-fonts-optimizer": "^0.2.2",
+    "gotrue-js": "^0.9.29",
+    "netlify-cli": "^15.10.0",
+    "node-fetch": "^3.3.2",
+    "stripe": "^12.17.0",
+    "tailwindcss": "^3.3.3"
+  }
+}

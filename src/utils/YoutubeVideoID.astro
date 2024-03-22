@@ -1,0 +1,12 @@
+---
+interface Props {
+    url: string;
+}
+const { url } = Astro.props;
+const urlPattern =/(?=(\s*))\1(?:<a [^>]*?>)??(?=(\s*))\2(?:https?:\/\/)??(?:w{3}\.)??(?:youtube\.com|youtu\.be)\/(?:watch\?v=|embed\/)??([A-Za-z0-9-_]{11})(?:[^\s<>]*)(?=(\s*))\4(?:<\/a>)??(?=(\s*))\5/;
+
+const match = url.match(urlPattern);
+const urlID = match?.[3];
+---
+
+<div class="w-full h-full absolute top-0 left-0" id="player" data-youtube-id={urlID}></div>

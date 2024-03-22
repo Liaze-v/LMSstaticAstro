@@ -1,0 +1,137 @@
+---
+
+---
+
+<div class="opacity-0 hidden modal-outer bg-[#0000004f] fixed h-[100vh] w-[100vw] top-0 left-0 justify-center items-center ">
+    <div class="modal-inner absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] max-w-[430px] w-full shadow-[0_5px_10px_rgba(0,0,0,0.3)] bg-white rounded-[7px] ">
+        <div class="identity-login hidden p-8">
+            <form class="identity-form-login" method="POST" action="/">
+                <h2 class="text-3xl font-medium text-center mb-6">Connection</h2>
+                <label class="font-bold" for="email">Email:</label>
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="email"
+                id="emailConnection"
+                name="email"
+                required
+                placeholder="Entrer votre Email"
+                />
+                <label class="font-bold" for="password">Mot de Passe:</label>
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="password"
+                id="passwordConnection"
+                name="password"
+                required
+                placeholder="Entrer votre Mot de Passe"
+                />
+                <div id="div-forget" class="text-base text-center">
+                    <label class="text-primary cursor-pointer hover:underline font-bold">Mot de Passe Oublié ?</label>
+                    </span>
+                </div>
+                <input type="submit" class="h-16 w-full px-[15px] mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)] text-white bg-primary text-xl font-bold mt-6 cursor-pointer " value="Connection" />
+            </form>
+        <div id="div-Signup" class="text-base text-center">
+            <span class="text-base text-center font-bold"
+                >Vous n'avez pas de compte ?
+                <label class="text-primary cursor-pointer hover:underline font-bold">Inscription</label>
+            </span>
+        </div>
+        </div>
+        <div class="identity-registration  hidden p-8">
+            <form class="identity-form-signup" method="POST" action="/">
+                <h2 class="text-3xl font-medium text-center mb-6">Inscription</h2>
+                <label class="font-bold" for="name">Votre Nom:</label>
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="text"
+                id="name"
+                name="name"
+                required
+                placeholder="Entrer votre Nom"
+                />
+                <label class="font-bold" for="email">Email:</label>
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="email"
+                id="emailInscription"
+                name="email"
+                required
+                placeholder="Entrer votre Email"
+                />
+                <label class="font-bold" for="password">Mot de Passe:</label>
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="password"
+                id="passwordInscription"
+                name="password"
+                required
+                placeholder="Créez votre mot de passe"
+                />
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="password"
+                id="password2"
+                name="password2"
+                required
+                placeholder="Confirmer votre mot de passe"
+                />
+                <input type="submit" class="h-16 w-full px-[15px] mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)] text-white bg-primary text-xl font-bold mt-6 cursor-pointer " value="Inscription" />
+            </form>
+            <div id="div-login" class="text-base text-center">
+                <span class="text-base text-center font-bold"
+                >Vous avez deja un compte ?
+                <label class="text-primary cursor-pointer hover:underline font-bold">Connection</label>
+                </span>
+            </div>
+        </div>
+        <div class="identity-forget p-8 hidden">
+            <form class="identity-form-forget" method="POST" action="/">
+                <h2 class="text-3xl font-medium text-center mb-6">Mot de passe Oublié</h2>
+                <label class="font-bold" for="email">Email:</label>
+                <input class="h-16 w-full px-[15px] text-base mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)]"
+                type="email"
+                id="emailMDPOublie"
+                name="email"
+                required
+                placeholder="Entrer votre Email"
+                />
+                <input type="submit" class="h-16 w-full px-[15px] mb-5 rounded-md border-solid border-[1px] border-black focus:shadow-[0_1px_0px_rgba(0,0,0,0.2)] text-white bg-primary  text-xl font-bold mt-6 cursor-pointer " value="Demander un nouveau mot de passe" />
+            </form>
+            <div id="div-Signup2" class="text-base text-center">
+                <span class="text-base text-center font-bold"
+                >Vous n'avez pas de compte ?
+                    <label class="text-primary cursor-pointer hover:underline font-bold">Inscription </label>
+                </span>
+            </div> 
+        </div>
+        <div class="identity-emailsend hidden">
+            <div class="flex flex-col items-center mx-auto w-max">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-green w-64 h-64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-xl font-bold text-center mb-6 ">Un email de <span class="text-primary font-extrabold">Confimation</span></p>
+                <p class="text-xl font-bold text-center mb-6 "> vous a été envoyé</p>
+            </div>
+        </div>
+        <div class="identity-emailresetsend hidden">
+            <div class="flex flex-col items-center mx-auto w-max">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-green w-64 h-64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-xl font-bold text-center mb-6 ">Un email de <span class="text-primary font-extrabold">Changement</span></p>
+                <p class="text-xl font-bold text-center mb-6 ">de mot de passe vous a été envoyé</p>
+            </div>
+        </div>
+        <div class="identity-emailconfirm hidden">
+            <div class="flex flex-col items-center mx-auto w-max">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-green w-64 h-64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-xl font-bold text-center mb-6">Votre email a été <span class="text-primary font-extrabold">Confirmer</span></p>
+            </div>
+        </div>
+        <div class="identity-loginSucess hidden">
+            <div class="flex flex-col items-center mx-auto w-max">
+                <svg xmlns="http://www.w3.org/2000/svg" class="text-green w-64 h-64" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <p class="text-xl font-bold text-center mb-6">Connexion <span class="text-primary font-extrabold">Réussie</span></p>
+            </div>
+        </div>
+    </div>
+</div>
